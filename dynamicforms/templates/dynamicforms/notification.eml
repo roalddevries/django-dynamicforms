@@ -1,0 +1,11 @@
+<p>Someone posted the form {{ dynamicform.name }}:</p>
+
+<p>
+    <dl>
+        {% for key, value in form.cleaned_data.iteritems %}
+            <dt>{{ key }}</dt><dd>{{ value }}</dd>
+        {% endfor %}
+    </dl>
+</p>
+
+<p><a href="{% url admin:dynamicforms_dynamicformdata_change dynamicformdata.id %}">Find your data here</a></p>

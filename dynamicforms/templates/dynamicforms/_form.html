@@ -1,0 +1,6 @@
+<form action="{{ dynamicform.get_absolute_url }}" method="POST">{% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" />
+</form>
