@@ -25,8 +25,7 @@ Install
 Dependencies
 ============
 
-``django 1.3``
-``html2text``
+``django >= 1.3``, ``html2text``
 
 Settings
 ========
