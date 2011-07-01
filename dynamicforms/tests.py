@@ -1,5 +1,5 @@
 from django import forms
-from django.utils.unittest import TestCase
+from django.utils.unittest import SkipTest, TestCase
 from django.utils.translation import ugettext_lazy as _
 from forms import BaseDynamicForm
 from models import DynamicField, DynamicFormFieldRelation, DynamicForm
@@ -104,12 +104,14 @@ class Test(TestCase):
         self.assertEqual(len(form_class.base_fields), 2)
 
     def test_mailphone_form(self):
-        if self.form_type:
-            form_class = self.mailphone_form.form_class
-            self.assertEqual(len(form_class.base_fields), 3)
+        if not self.form_type:
+            raise SkipTest('No form type with base class dynamicforms.tests.BaseForm')
+        form_class = self.mailphone_form.form_class
+        self.assertEqual(len(form_class.base_fields), 3)
 
     def test_override_form(self):
-        if self.form_type:
-            form_class = self.override_form.form_class
-            self.assertEqual(len(form_class.base_fields), 3)
+        if not self.form_type:
+            raise SkipTest('No form type with base class dynamicforms.tests.BaseForm')
+        form_class = self.override_form.form_class
+        self.assertEqual(len(form_class.base_fields), 3)
 
