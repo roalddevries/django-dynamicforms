@@ -2,7 +2,6 @@ from datetime import date
 from django import forms
 from django.http import HttpResponse
 from django.contrib import admin
-from django.utils.translation import ugettext as _
 from models import DynamicFieldValue, DynamicField, DynamicFormFieldRelation, DynamicForm, DynamicFormData
 from StringIO import StringIO
 from zipfile import ZipFile
