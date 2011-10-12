@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.http import QueryDict
 from django.utils.translation import ugettext_lazy as _
-from forms import BaseDynamicForm, DynamicFormMetaclass
+from forms import DynamicFormMetaclass
 import re
 
 
@@ -183,7 +183,7 @@ class DynamicForm(models.Model):
             return success_url
         else:
             # check if it's a named url
-            if success_url.startswith('"') and quoted_url.endswith('"'):
+            if success_url.startswith('"') and success_url.endswith('"'):
                 return reverse(success_url.strip('"'))
             else:
                 # relative url
