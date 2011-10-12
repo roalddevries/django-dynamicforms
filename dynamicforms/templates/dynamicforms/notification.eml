@@ -8,4 +8,4 @@
     </dl>
 </p>
 
-<p><a href="{% url admin:dynamicforms_dynamicformdata_change dynamicformdata.id %}">Find your data here</a></p>
+<p><a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{ site.domain }}{% url admin:dynamicforms_dynamicformdata_change dynamicformdata.id %}">Find your data here</a></p>
