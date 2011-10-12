@@ -32,7 +32,7 @@ for k, v in getattr(settings, 'DYNAMICFIELD_TYPES', {}).iteritems():
 DEFAULT_DYNAMICFORM_TYPE = {
     'VERBOSE_NAME':   _('default form'),
     'BASE_FORM':      'dynamicforms.forms.BaseDynamicForm',
-    'REDIRECT_URL':   '',
+    'SUCCESS_URL':    '',
     'TEMPLATE':       'dynamicforms/form.html',
     'TAG_TEMPLATE':   'dynamicforms/_form.html',
     'EMAIL_TEMPLATE': 'dynamicforms/notification.eml',
