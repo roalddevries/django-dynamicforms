@@ -61,14 +61,14 @@ class ProcessDynamicFormView(FormView):
         # create e-mail for dynamicform manager
         if self.dynamicform.notification_emails:
             recipients = self.dynamicform.notification_emails.split(u',')
-            subject = _(u'Form "%s" was posted') % self.dynamicform.name
+            subject = _(u'Someone filled in your online form "%s"') % self.dynamicform.name
             context = RequestContext(
                 self.request,
                 {
-                    'form': form,
-                    'dynamicform': self.dynamicform,
+                    'form':            form,
+                    'dynamicform':     self.dynamicform,
                     'dynamicformdata': data,
-                    'site': Site.objects.get_current(),
+                    'site':            Site.objects.get_current(),
                 },
             )
             content = render_to_string(self.dynamicform.email_template, context_instance=context)
