@@ -183,7 +183,7 @@ class DynamicForm(models.Model):
             return success_url
         else:
             # check if it's a named url
-            if success_url.startswith('"') and quoted_url.endswith('"'):
+            if success_url.startswith('"') and success_url.endswith('"'):
                 return reverse(success_url.strip('"'))
             else:
                 # relative url

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import get_object_or_404
 from django.template import Context, RequestContext, Template
@@ -60,8 +61,16 @@ class ProcessDynamicFormView(FormView):
         # create e-mail for dynamicform manager
         if self.dynamicform.notification_emails:
             recipients = self.dynamicform.notification_emails.split(u',')
-            subject = _(u'Form "%s" was posted') % self.dynamicform.name
-            context = RequestContext(self.request, {'form': form, 'dynamicform': self.dynamicform, 'dynamicformdata': data})
+            subject = _(u'Someone filled in your online form "%s"') % self.dynamicform.name
+            context = RequestContext(
+                self.request,
+                {
+                    'form':            form,
+                    'dynamicform':     self.dynamicform,
+                    'dynamicformdata': data,
+                    'site':            Site.objects.get_current(),
+                },
+            )
             content = render_to_string(self.dynamicform.email_template, context_instance=context)
             msg = EmailMultiAlternatives(
                     force_unicode(subject),
